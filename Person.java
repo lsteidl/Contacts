@@ -1,6 +1,7 @@
 public class Person {
     private String firstName;
     private String lastName;
+    private Person next;
 
     //Create a person
     Person(String first, String last) {

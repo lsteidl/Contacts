@@ -20,12 +20,14 @@ public class Book {
        }
        else{
             // iterator of linked list contents
-            ListIterator<Person> itr = this.list.listIterator();
-            // loop through all items in list
+           ListIterator<Person> itr = this.list.listIterator();
+         // Person head = list.getFirst();
+         // Person curr = head;  
+          // loop through all items in list
             while(itr.hasNext()){
                 // print each as string
-                System.out.println(itr.toString());
-                itr.next();
+                Person person = itr.next();
+                System.out.println(person);
             }
        }
 
