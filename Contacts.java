@@ -10,7 +10,7 @@ public class Contacts {
         while (true) { // infinte loop with menu options
             System.out.println();
             System.out.println("1) Load Contacts");
-            System.out.println("2) Print Contacts");
+            System.out.println("2) View Contacts");
             System.out.println("3) New Contact");
             System.out.println("4) Edit/Delete Contact");
             System.out.println("5) Save session");
@@ -20,6 +20,7 @@ public class Contacts {
             if (reader.hasNextInt()) { // error prevention
                 n = reader.nextInt(); // get next integer from scanner
             } else {
+                // print error
                 System.out.println("Invalid Input");
                 n = -1;
             }
@@ -54,7 +55,7 @@ public class Contacts {
     public static void load(Book book) {
         System.out.println("Contact loading...");
         // create book.isEmpty method to avoid reloading?
-        book.loadFile();
+        book.loadFile(); // load from text file
         System.out.println("Contacts loaded...");
 
     }
@@ -64,7 +65,7 @@ public class Contacts {
         System.out.println("Saving contacts...");
         try {
             FileWriter fileWriter = new FileWriter("addressBook.txt");
-            book.printListToFile(fileWriter);
+            book.printListToFile(fileWriter); // print current contacts to text file
             fileWriter.close();
         } catch (Exception IOException) {
             System.out.println("I/O Exception");
@@ -75,7 +76,7 @@ public class Contacts {
     // print contact list to screen
     public static void print(Book book) {
         System.out.println("Printing contacts...");
-        book.printList();
+        book.printList(); // display current contacts to user
     }
     // edit / delete contact
     public static void edit(Book book, Scanner reader) {
@@ -89,12 +90,12 @@ public class Contacts {
             System.out.println("You chose: " + book.getPerson(index));
             System.out.println("0) Delete Contact");
             System.out.println("1) Edit Contact");
-            if(reader.hasNextInt()){
+            if(reader.hasNextInt()){ // get valid user input
                 int choice = reader.nextInt();
-                if(choice == 0){
+                if(choice == 0){ // delete contact
                     book.removePerson(index);
                 }
-                else if(choice == 1){
+                else if(choice == 1){ // edit contact
                     book.editPerson(index, reader);
                 }
             }
