@@ -1,5 +1,4 @@
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Contacts {
@@ -50,27 +49,26 @@ public class Contacts {
     }
 
     // save contacts to text file
-    public static void save(Book book){
-        String fileContent = "This line is a test";
-        try{
-        FileWriter fileWriter = new FileWriter("addressBook.txt");
-        fileWriter.write(fileContent);
-        fileWriter.close();
-        }
-        catch(Exception IOException){
+    public static void save(Book book) {
+        try {
+            FileWriter fileWriter = new FileWriter("addressBook.txt");
+            book.printListToFile(fileWriter);
+            fileWriter.close();
+        } catch (Exception IOException) {
             System.out.println("I/O Exception");
         }
-        
 
     }
+
     // print contact list to screen
-    public static void print(Book book){
+    public static void print(Book book) {
         System.out.println("Printing contacts...");
         book.printList();
 
     }
+
     // add new contact
-    public static void newContact(Book book, Scanner reader){
+    public static void newContact(Book book, Scanner reader) {
         String firstName = "";
         String lastName = "";
         System.out.println("Adding new contact...");
@@ -78,17 +76,17 @@ public class Contacts {
         Person newPerson2 = new Person("Dave", "Bear");
         book.addPerson(newPerson);
         book.addPerson(newPerson2);
-        
+
         System.out.println("Please enter First and Last name");
-        if(reader.hasNext()){
+        if (reader.hasNext()) {
             firstName = reader.next();
         }
-        if(reader.hasNext()){
+        if (reader.hasNext()) {
             lastName = reader.next();
         }
-       // while(reader.hasNext()){
-            reader.nextLine(); // clear extra data from buffer
-        //}
+        // while(reader.hasNext()){
+        reader.nextLine(); // clear extra data from buffer
+        // }
         Person newPerson3 = new Person(firstName, lastName);
         book.addPerson(newPerson3);
 

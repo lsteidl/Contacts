@@ -8,12 +8,12 @@ public class Person {
         this.firstName = first;
         this.lastName = last;
         System.out.println("Creating contact: " + first + " " + last);
-        
+
     }
     // overriding default toString method
-    // print in format of: "lastname, firstname"
+    // print in format of: "firstname lastname"
     public String toString(){
-        String print = this.lastName + ", " + this.firstName;
+        String print = this.firstName + " " + this.lastName;
         return print;
     }
 }
