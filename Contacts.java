@@ -80,18 +80,22 @@ public class Contacts {
     // edit / delete contact
     public static void edit(Book book, Scanner reader) {
         System.out.println("Contact List...");
-        book.printNumberedList();
+        book.printNumberedList(); // show contacts with indexing
         System.out.print("Enter number of contact to edit...");
         if(reader.hasNextInt()){
-            int index = reader.nextInt();
+            int index = reader.nextInt() - 1;
+            // print edit/delete options
             System.out.println();
-            System.out.println("You chose: " + book.getPerson(index -1));
+            System.out.println("You chose: " + book.getPerson(index));
             System.out.println("0) Delete Contact");
             System.out.println("1) Edit Contact");
             if(reader.hasNextInt()){
                 int choice = reader.nextInt();
                 if(choice == 0){
-                    book.removePerson(index - 1);
+                    book.removePerson(index);
+                }
+                else if(choice == 1){
+                    book.editPerson(index, reader);
                 }
             }
         }
@@ -101,23 +105,23 @@ public class Contacts {
         String firstName = "";
         String lastName = "";
         System.out.println("Adding new contact...");
-        Person newPerson = new Person("Apple", "Jack");
-        Person newPerson2 = new Person("Dave", "Bear");
-        book.addPerson(newPerson);
-        book.addPerson(newPerson2);
+       //TESTING
+        // Person newPerson = new Person("Apple", "Jack");
+        // Person newPerson2 = new Person("Dave", "Bear");
+        // book.addPerson(newPerson);
+        // book.addPerson(newPerson2);
 
-        System.out.println("Please enter First and Last name");
+        System.out.print("Please enter First and Last name...");
         if (reader.hasNext()) {
-            firstName = reader.next();
+            firstName = reader.next(); // get user input 
         }
         if (reader.hasNext()) {
-            lastName = reader.next();
+            lastName = reader.next(); // get user input
         }
-        // while(reader.hasNext()){
+        
         reader.nextLine(); // clear extra data from buffer
-        // }
-        Person newPerson3 = new Person(firstName, lastName);
-        book.addPerson(newPerson3);
+        Person newPerson3 = new Person(firstName, lastName); // create person
+        book.addPerson(newPerson3); // add person to list
 
     }
 }

@@ -15,7 +15,7 @@ public class Book {
 
     public void addPerson(Person person) {
         this.list.add(person);
-        System.out.println("Book - Added " + person.toString() + " to List");
+       // System.out.println("Book - Added " + person.toString() + " to List");
     }
 
     public void loadFile() {
@@ -23,12 +23,13 @@ public class Book {
         File text = new File("addressBook.txt");
         
         try {
-            Scanner scnr = new Scanner(text);
+            Scanner scnr = new Scanner(text); // new file scanner
             while (scnr.hasNextLine()) {
+                // get person info
                 String first = scnr.nextLine();
                 String last = scnr.nextLine();
                 Person person = new Person(first, last);
-                addPerson(person);
+                addPerson(person); // add person to book
             }
             scnr.close();
         } catch (FileNotFoundException e) {
@@ -40,6 +41,30 @@ public class Book {
     public Person getPerson(int index){
         Person person = this.list.get(index);
         return person;
+    }
+    public void editPerson(int index, Scanner reader){
+        Person person = getPerson(index);
+        System.out.println("Editing..." + person);
+        System.out.println("0) Edit First Name");
+        System.out.println("1) Edit Last Name");
+        if(reader.hasNextInt()){
+            int input = reader.nextInt();
+            if(input == 0){
+                System.out.println("Enter new first name");
+                if(reader.hasNext()){
+                    String update = reader.next();
+                    person.updateFirst(update);
+                }
+                
+            }
+            else if(input == 1){
+                System.out.println("Enter new last name");
+                if(reader.hasNext()){
+                    String update = reader.next();
+                    person.updateLast(update);
+                }
+            }
+        }
     }
     // removes person at given index
     public void removePerson(int index){

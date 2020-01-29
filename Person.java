@@ -7,7 +7,7 @@ public class Person {
     Person(String first, String last) {
         this.firstName = first;
         this.lastName = last;
-        System.out.println("Creating contact: " + first + " " + last);
+      //  System.out.println("Creating contact: " + first + " " + last);
 
     }
     // overriding default toString method
@@ -21,5 +21,15 @@ public class Person {
         String print = this.firstName + "\n" + this.lastName;
         return print;
     }
-    
+    public void updateFirst(String update){
+        String temp = this.firstName;
+        this.firstName = update;
+        System.out.println("Updated First Name from " + temp + " to " + this.firstName);
+
+    }
+    public void updateLast(String update){
+        String temp = this.lastName;
+        this.lastName = update;
+        System.out.println("Updated Last Name from " + temp + " to " + this.lastName);
+    }
 }
