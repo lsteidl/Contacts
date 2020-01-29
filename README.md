@@ -1,5 +1,6 @@
 # Contacts
 Application to store contact information
+
 User can...
 
 create new contacts,
