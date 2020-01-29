@@ -16,4 +16,9 @@ public class Person {
         String print = this.firstName + " " + this.lastName;
         return print;
     }
+    // used for saving contacts to text file
+    public String outputStringFormat(){
+        String print = this.firstName + "\n" + this.lastName;
+        return print;
+    }
 }

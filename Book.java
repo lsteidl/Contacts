@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
 // Address book object. Maintains linked list of Person objects
@@ -16,11 +18,30 @@ public class Book {
         System.out.println("Book - Added " + person.toString() + " to List");
     }
 
+    public void loadFile() {
+        // creating File instance to reference text file
+        File text = new File("addressBook.txt");
+        
+        try {
+            Scanner scnr = new Scanner(text);
+            while (scnr.hasNextLine()) {
+                String first = scnr.nextLine();
+                String last = scnr.nextLine();
+                Person person = new Person(first, last);
+                addPerson(person);
+            }
+            scnr.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     // displays list of contacts for user to view
     public void printList() {
         int size = this.list.size();
         if (size == 0) {
-            System.out.println("Error: List is Empty");
+            System.out.println("No contacts found.");
         } else {
             // iterator of linked list contents
             ListIterator<Person> itr = this.list.listIterator();
@@ -50,7 +71,7 @@ public class Book {
                 // print each as string
                 Person person = itr.next();
                 try {
-                    fileWriter.write(person.toString());
+                    fileWriter.write(person.outputStringFormat());
                     fileWriter.write("\n");
                 } catch (Exception IOException) {
                     System.out.println("I/O Exception");

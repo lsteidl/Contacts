@@ -23,7 +23,7 @@ public class Contacts {
             }
             // load contacts
             if (n == 1) {
-                load();
+                load(book);
             } else if (n == 2) {
                 print(book);
             } else if (n == 3) {
@@ -38,18 +38,21 @@ public class Contacts {
             // reader.nextLine(); // clear extra data from buffer
 
         }
-
         reader.close(); // close scanner
     }
 
     // load contacts from text file
-    public static void load() {
+    public static void load(Book book) {
         System.out.println("Contact loading...");
+        // create book.isEmpty method to avoid reloading?
+
+        book.loadFile();
 
     }
 
     // save contacts to text file
     public static void save(Book book) {
+        System.out.println("Saving contacts...");
         try {
             FileWriter fileWriter = new FileWriter("addressBook.txt");
             book.printListToFile(fileWriter);
@@ -64,7 +67,6 @@ public class Contacts {
     public static void print(Book book) {
         System.out.println("Printing contacts...");
         book.printList();
-
     }
 
     // add new contact
