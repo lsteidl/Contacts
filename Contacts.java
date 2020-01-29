@@ -28,12 +28,15 @@ public class Contacts {
             print(book);
         }
         else if(n == 3){
-            newContact(book);
+            newContact(book, reader);
+           // reader.nextLine();
         }
         else if(n == 0){
             break;
         }
-        reader.nextLine(); // clear extra data from bufferr
+        
+       // reader.nextLine(); // clear extra data from buffer
+        
     }
 
           reader.close(); // close scanner
@@ -50,12 +53,27 @@ public class Contacts {
 
     }
     // add new contact
-    public static void newContact(Book book){
+    public static void newContact(Book book, Scanner reader){
+        String firstName = "";
+        String lastName = "";
         System.out.println("Adding new contact...");
         Person newPerson = new Person("Apple", "Jack");
         Person newPerson2 = new Person("Dave", "Bear");
         book.addPerson(newPerson);
         book.addPerson(newPerson2);
+        
+        System.out.println("Please enter First and Last name");
+        if(reader.hasNext()){
+            firstName = reader.next();
+        }
+        if(reader.hasNext()){
+            lastName = reader.next();
+        }
+       // while(reader.hasNext()){
+            reader.nextLine(); // clear extra data from buffer
+        //}
+        Person newPerson3 = new Person(firstName, lastName);
+        book.addPerson(newPerson3);
 
     }
 }
