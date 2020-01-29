@@ -1,7 +1,7 @@
 public class Person {
     private String firstName;
     private String lastName;
-    private Person next;
+    private Person index;
 
     //Create a person
     Person(String first, String last) {
@@ -21,4 +21,5 @@ public class Person {
         String print = this.firstName + "\n" + this.lastName;
         return print;
     }
+    
 }

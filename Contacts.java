@@ -12,7 +12,9 @@ public class Contacts {
             System.out.println("1) Load Contacts");
             System.out.println("2) Print Contacts");
             System.out.println("3) New Contact");
-            System.out.println("4) Save session");
+            System.out.println("4) Edit/Delete Contact");
+            System.out.println("5) Save session");
+            System.out.println("0) Exit session");
             System.out.println();
 
             if (reader.hasNextInt()) { // error prevention
@@ -21,17 +23,24 @@ public class Contacts {
                 System.out.println("Invalid Input");
                 n = -1;
             }
-            // load contacts
+            
             if (n == 1) {
+                // load contacts
                 load(book);
             } else if (n == 2) {
+                // display contacts
                 print(book);
             } else if (n == 3) {
+                // add new contact
                 newContact(book, reader);
-                // reader.nextLine();
-            } else if (n == 4) {
+            } else if(n == 4){
+                // edit contact
+                edit(book, reader);
+            }else if (n == 5) {
+                // save current contacts
                 save(book);
             } else if (n == 0) {
+                // exit
                 break;
             }
 
@@ -45,8 +54,8 @@ public class Contacts {
     public static void load(Book book) {
         System.out.println("Contact loading...");
         // create book.isEmpty method to avoid reloading?
-
         book.loadFile();
+        System.out.println("Contacts loaded...");
 
     }
 
@@ -68,7 +77,25 @@ public class Contacts {
         System.out.println("Printing contacts...");
         book.printList();
     }
-
+    // edit / delete contact
+    public static void edit(Book book, Scanner reader) {
+        System.out.println("Contact List...");
+        book.printNumberedList();
+        System.out.print("Enter number of contact to edit...");
+        if(reader.hasNextInt()){
+            int index = reader.nextInt();
+            System.out.println();
+            System.out.println("You chose: " + book.getPerson(index -1));
+            System.out.println("0) Delete Contact");
+            System.out.println("1) Edit Contact");
+            if(reader.hasNextInt()){
+                int choice = reader.nextInt();
+                if(choice == 0){
+                    book.removePerson(index - 1);
+                }
+            }
+        }
+    }
     // add new contact
     public static void newContact(Book book, Scanner reader) {
         String firstName = "";
